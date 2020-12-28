@@ -56,17 +56,17 @@ export default function TopNavig() {
 
 const styles = StyleSheet.create({
   container: {
-    borderTopLeftRadius: 30,
-    borderTopRightRadius: 30,
+    // borderTopLeftRadius: 30,
+    // borderTopRightRadius: 30,
     elevation: 20,
     height: height - 120,
     width,
     overflow: 'hidden',
   },
   bottomBar: {
-    borderTopLeftRadius: 30,
-    borderTopRightRadius: 30,
-    height: 90,
+    // borderTopLeftRadius: 30,
+    // borderTopRightRadius: 30,
+    height: 80,
     width: '100%',
     backgroundColor: R.colors.primary,
     // position: 'absolute',

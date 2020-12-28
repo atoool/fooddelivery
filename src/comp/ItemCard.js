@@ -9,17 +9,27 @@ import {Button} from 'react-native-elements';
 
 const {width, height} = Dimensions.get('window');
 
-export default ItemCard = ({item}) => {
+export default ItemCard = ({item, addToCart, cartArray}) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.price}>{item.price}</Text>
+      <Text style={styles.price}>${item.price}</Text>
       <Image style={styles.img} source={{uri: item.imgs}} />
       <Text style={styles.title}>{item.name}</Text>
       <Text style={styles.caption}>{item.desc}</Text>
       <Button
-        title="ADD TO CART"
+        disabled={cartArray.filter((i) => i.name == item.name).length != 0}
+        disabledStyle={{backgroundColor: '#28df99'}}
+        disabledTitleStyle={[styles.btnTitle, {color: '#000'}]}
+        title={
+          cartArray.filter((i) => i.name == item.name).length != 0
+            ? 'ADDED'
+            : 'ADD TO CART'
+        }
         titleStyle={styles.btnTitle}
         buttonStyle={styles.button}
+        onPress={() => {
+          addToCart(item);
+        }}
       />
     </View>
   );

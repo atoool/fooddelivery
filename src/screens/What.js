@@ -1,21 +1,69 @@
 import * as React from 'react';
-import {View, Text, StyleSheet, FlatList} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  FlatList,
+  TouchableNativeFeedback,
+} from 'react-native';
 import R from '../res/R';
 import Icon from 'react-native-vector-icons/FontAwesome5';
+import data from '../res/appData.json';
+import {ContextStates} from '../func/ContextStates';
+
 export default What = () => {
+  const context = React.useContext(ContextStates);
+  let {category} = context.reduState;
+  const {dispatch} = context;
+
   return (
     <View style={styles.container}>
       <FlatList
-        data={['Pizza', 'Cake', 'Snacks', 'Burger']}
+        data={data.data}
         keyExtractor={(item, index) => index.toString()}
         horizontal={false}
         numColumns={2}
+        extraData={category}
         renderItem={({item, index}) => (
           <View style={styles.category}>
-            <View style={styles.iconView}>
-              <Icon name="pizza-slice" size={25} />
-            </View>
-            <Text style={styles.iconTxt}>{item}</Text>
+            <TouchableNativeFeedback
+              useForeground
+              onPress={async () =>
+                await dispatch({
+                  type: 'changeCategory',
+                  payload: index,
+                })
+              }>
+              <View
+                style={[
+                  styles.iconView,
+                  {
+                    borderWidth: 2,
+                    borderColor: category == index ? '#000' : R.colors.trans,
+                  },
+                ]}>
+                <Icon
+                  name={
+                    item.category == 'Pizza'
+                      ? 'pizza-slice'
+                      : item.category == 'Cake'
+                      ? 'birthday-cake'
+                      : item.category == 'Burger'
+                      ? 'hamburger'
+                      : 'cookie-bite'
+                  }
+                  size={25}
+                  color={category == index ? '#000' : R.colors.tabIcon}
+                />
+              </View>
+            </TouchableNativeFeedback>
+            <Text
+              style={[
+                styles.iconTxt,
+                {color: category == index ? '#000' : R.colors.tabIcon},
+              ]}>
+              {item.category}
+            </Text>
           </View>
         )}
       />
@@ -39,6 +87,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 10,
+    overflow: 'hidden',
   },
   iconTxt: {
     fontFamily: 'Montserrat-Medium',

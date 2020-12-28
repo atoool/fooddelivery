@@ -5,6 +5,7 @@ import {
   StyleSheet,
   TouchableNativeFeedback,
   Dimensions,
+  Image,
 } from 'react-native';
 import ItemCards from '../comp/ItemCards';
 import R from '../res/R';
@@ -12,8 +13,11 @@ import data from '../res/appData.json';
 import BottomView from '../comp/BottomView';
 import TabContent from '../comp/TabContent';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import {Menu, Divider, Provider} from 'react-native-paper';
+import {Menu, Divider, Provider, DefaultTheme} from 'react-native-paper';
 import {Button} from 'react-native-elements';
+import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import CartList from '../comp/CartList';
+import {ContextStates} from '../func/ContextStates';
 
 const tabArray = [
   {label: 'What?', icon: 'utensils'},
@@ -24,10 +28,20 @@ const tabArray = [
 const {width, height} = Dimensions.get('window');
 
 export default Home = () => {
+  const theme = {
+    ...DefaultTheme,
+    roundness: 2,
+    colors: {
+      ...DefaultTheme.colors,
+      primary: '#fff',
+    },
+  };
+  const context = React.useContext(ContextStates);
   const [open, setOpen] = React.useState(false);
   const [tab, setTab] = React.useState({});
   const [visible, setVisible] = React.useState(false);
-
+  let [totalPrice, setTotalPrice] = React.useState(0);
+  const [cartArray, setCartArray] = React.useState([]);
   const openMenu = () => setVisible(true);
 
   const closeMenu = () => setVisible(false);
@@ -35,14 +49,30 @@ export default Home = () => {
     setOpen(true);
     setTab(itm);
   };
+
+  const addToCart = (item) => {
+    const tempObj = {...item, qty: 1};
+    const tempArray = [...cartArray, tempObj];
+    setCartArray(tempArray);
+    tempArray.map((i) => {
+      let tempVal = i.qty * i.price;
+      totalPrice = totalPrice + tempVal;
+      setTotalPrice(JSON.parse(totalPrice.toFixed(2)));
+    });
+  };
+
   return (
-    <Provider>
+    <Provider theme={theme}>
       <View style={styles.container}>
         <View style={styles.header}>
           <Text style={styles.title}>I want to eat...</Text>
           <Text style={styles.caption}>find your favourite food here</Text>
         </View>
-        <ItemCards items={data.data[0].list} />
+        <ItemCards
+          items={data.data[context.reduState.category].list}
+          addToCart={addToCart}
+          cartArray={cartArray}
+        />
         <View style={styles.bottomBar}>
           {/* <View
           style={{
@@ -68,16 +98,53 @@ export default Home = () => {
           ))}
         </View>
         <BottomView open={open} itm={tab} onClosed={() => setOpen(false)} />
-        <TouchableNativeFeedback onPress={openMenu}>
+        <TouchableNativeFeedback
+          background={TouchableNativeFeedback.Ripple('lightgrey')}
+          useForeground={true}
+          onPress={openMenu}>
           <View style={styles.cartview}>
+            {cartArray.length != 0 && (
+              <View
+                style={{
+                  position: 'absolute',
+                  height: 15,
+                  width: 15,
+                  borderRadius: 15,
+                  right: 10,
+                  top: 5,
+                  backgroundColor: '#28df99',
+                  zIndex: 10,
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}>
+                <Text style={{fontFamily: 'Montserrat-Bold', fontSize: 7}}>
+                  {cartArray.length}
+                </Text>
+              </View>
+            )}
+            <Icon
+              name="shopping-cart"
+              color="#fff"
+              size={23}
+              style={{alignSelf: 'center', marginVertical: (50 - 23) / 2}}
+            />
             <Menu
               visible={visible}
               onDismiss={closeMenu}
-              anchor={{x: Dimensions.get('window').width - 0, y: 70}}>
-              <Menu.Item onPress={() => {}} title="Item 1" />
-              <Menu.Item onPress={() => {}} title="Item 2" />
+              style={{width: '95.5%'}}
+              anchor={{x: Dimensions.get('window').width, y: 120}}>
+              <CartList
+                list={cartArray}
+                updateCart={(list) => setCartArray([...list])}
+                updateTotalPrice={(price) => setTotalPrice(price)}
+              />
               <Divider />
-              <Menu.Item onPress={() => {}} title="Item 3" />
+              <Button
+                title={`order for $${totalPrice}`}
+                titleStyle={{fontFamily: 'Montserrat-Bold'}}
+                buttonStyle={styles.checkoutBut}
+                disabled={cartArray.length == 0}
+              />
             </Menu>
           </View>
         </TouchableNativeFeedback>
@@ -112,7 +179,7 @@ const styles = StyleSheet.create({
   bottomBar: {
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
-    height: 90,
+    height: 70,
     width: '100%',
     backgroundColor: R.colors.primary,
     position: 'absolute',
@@ -133,5 +200,9 @@ const styles = StyleSheet.create({
     backgroundColor: R.colors.button,
     overflow: 'hidden',
   },
-  menubutton: {height: '100%', backgroundColor: R.colors.trans},
+  checkoutBut: {
+    margin: 20,
+    backgroundColor: '#000',
+    borderRadius: 10,
+  },
 });

@@ -1,34 +1,34 @@
 {
   "data": [
     {
-      "category": "pizza",
+      "category": "Pizza",
       "list": [
         {
           "name": "Margarita pizza",
           "desc": "Ally's baking",
           "imgs": "https://www.acouplecooks.com/wp-content/uploads/2018/10/Margherita-Pizza-018.jpg",
-          "price": "$4.9",
+          "price": 4.9,
           "shop": ""
         },
         {
           "name": "Cheese pizza",
           "desc": "Ally's baking",
           "imgs": "https://vaya.in/recipes/wp-content/uploads/2018/05/Four-Cheese-Margherita-Pizza.jpg",
-          "price": "$3",
+          "price": 3,
           "shop": ""
         },
         {
           "name": "Mexican pizza",
           "desc": "Ally's baking",
           "imgs": "https://www.acouplecooks.com/wp-content/uploads/2018/05/Loaded-Mexican-Pizza-023.jpg",
-          "price": "$6",
+          "price": 6,
           "shop": ""
         },
         {
           "name": "Chicken pizza",
           "desc": "Ally's baking",
           "imgs": "https://life-in-the-lofthouse.com/wp-content/uploads/2018/05/Chicken-Taco-Pizza1.jpg",
-          "price": "$8",
+          "price": 8,
           "shop": ""
         }
       ]
@@ -40,28 +40,28 @@
           "name": "Chocolate cake",
           "desc": "Ally's baking",
           "imgs": "https://www.cookingclassy.com/wp-content/uploads/2019/10/chocolate-cake-3.jpg",
-          "price": "$15",
+          "price": 15,
           "shop": ""
         },
         {
           "name": "Black forest",
           "desc": "Ally's baking",
           "imgs": "https://natashaskitchen.com/wp-content/uploads/2015/06/Black-Forest-Cake-5.jpg",
-          "price": "$18",
+          "price": 18,
           "shop": ""
         },
         {
           "name": "Kit Kat cake",
           "desc": "Ally's baking",
           "imgs": "https://5.imimg.com/data5/NV/AW/GLADMIN-47469855/kitkat-cake-500x500.png",
-          "price": "$16",
+          "price": 16,
           "shop": ""
         },
         {
           "name": "Red velvet",
           "desc": "Ally's baking",
           "imgs": "https://cafedelites.com/wp-content/uploads/2018/05/Red-Velvet-Cake-IMAGE-43.jpg",
-          "price": "$20",
+          "price": 20,
           "shop": ""
         }
       ]
@@ -73,28 +73,28 @@
           "name": "Veggie burger",
           "desc": "Ally's baking",
           "imgs": "https://www.howsweeteats.com/wp-content/uploads/2018/06/veg-burgers-I-howsweeteats.com-15.jpg",
-          "price": "$3",
+          "price": 3,
           "shop": ""
         },
         {
           "name": "Hamburger",
           "desc": "Ally's baking",
           "imgs": "https://assets.epicurious.com/photos/57c5c6d9cf9e9ad43de2d96e/master/pass/the-ultimate-hamburger.jpg",
-          "price": "$5",
+          "price": 5,
           "shop": ""
         },
         {
           "name": "Cheese burger",
           "desc": "Ally's baking",
           "imgs": "https://assets.epicurious.com/photos/5c745a108918ee7ab68daf79/master/pass/Smashburger-recipe-120219.jpg",
-          "price": "$8",
+          "price": 8,
           "shop": ""
         },
         {
           "name": "Chicken burger",
           "desc": "Ally's baking",
           "imgs": "https://images.immediate.co.uk/production/volatile/sites/2/2017/06/Butchies-2.jpg?quality=45&resize=768,574",
-          "price": "$10",
+          "price": 10,
           "shop": ""
         }
       ]
@@ -106,28 +106,28 @@
           "name": "Chips",
           "desc": "Ally's baking",
           "imgs": "https://cdn.shopify.com/s/files/1/0662/0785/articles/EasyHealthySnacks_en65ab5213130c9862172ac11435f055d965ab5213130c9862172ac11435f055d9_68d13b54-e77d-487c-9126-54ac849a3e5c_1024x1024.jpg?v=1596458407",
-          "price": "$3",
+          "price": 3,
           "shop": ""
         },
         {
           "name": "Roll",
           "desc": "Ally's baking",
           "imgs": "https://cdn.shopify.com/s/files/1/0662/0785/articles/EasyHealthySnacks_en65ab5213130c9862172ac11435f055d965ab5213130c9862172ac11435f055d9_68d13b54-e77d-487c-9126-54ac849a3e5c_1024x1024.jpg?v=1596458407",
-          "price": "$5",
+          "price": 5,
           "shop": ""
         },
         {
           "name": "Shavarma roll",
           "desc": "Ally's baking",
           "imgs": "https://cdn.shopify.com/s/files/1/0662/0785/articles/EasyHealthySnacks_en65ab5213130c9862172ac11435f055d965ab5213130c9862172ac11435f055d9_68d13b54-e77d-487c-9126-54ac849a3e5c_1024x1024.jpg?v=1596458407",
-          "price": "$8",
+          "price": 8,
           "shop": ""
         },
         {
           "name": "Pups",
           "desc": "Ally's baking",
           "imgs": "https://cdn.shopify.com/s/files/1/0662/0785/articles/EasyHealthySnacks_en65ab5213130c9862172ac11435f055d965ab5213130c9862172ac11435f055d9_68d13b54-e77d-487c-9126-54ac849a3e5c_1024x1024.jpg?v=1596458407",
-          "price": "$10",
+          "price": 10,
           "shop": ""
         }
       ]

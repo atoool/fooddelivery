@@ -20,7 +20,7 @@ export default TabContent = ({itm}) => {
 const styles = StyleSheet.create({
   container: {
     width: 90,
-    height: 90,
+    height: 70,
     borderRadius: 90,
     alignItems: 'center',
     justifyContent: 'center',
@@ -32,6 +32,6 @@ const styles = StyleSheet.create({
     color: R.colors.tabIcon,
   },
   tabIcon: {
-    bottom: 10,
+    bottom: 5,
   },
 });

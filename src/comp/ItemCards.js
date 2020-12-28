@@ -3,7 +3,7 @@ import {View, Text, StyleSheet, FlatList} from 'react-native';
 import ItemCard from './ItemCard';
 import R from '../res/R';
 
-export default ItemCards = ({items}) => {
+export default ItemCards = ({items, addToCart, cartArray}) => {
   return (
     <FlatList
       data={items}
@@ -11,7 +11,9 @@ export default ItemCards = ({items}) => {
       numColumns={2}
       horizontal={false}
       keyExtractor={(item, index) => item + index.toString()}
-      renderItem={({item, index}) => <ItemCard item={item} />}
+      renderItem={({item, index}) => (
+        <ItemCard item={item} addToCart={addToCart} cartArray={cartArray} />
+      )}
     />
   );
 };

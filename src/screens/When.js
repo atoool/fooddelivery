@@ -3,18 +3,19 @@ import {View, Text, StyleSheet} from 'react-native';
 import R from '../res/R';
 import Calendar from 'react-native-calendar-strip';
 import {WheelPicker} from 'react-native-wheel-picker-android';
+import {useFocusEffect} from '@react-navigation/native';
 
-const wheelPickerData = [
-  '09.00 AM',
-  '10.00 AM',
-  '11.00 AM',
-  '12.00 PM',
-  '01.00 PM',
-  '02.00 PM',
-  '03.00 PM',
-  '04.00 PM',
-  '05.00 PM',
-  '06.00 PM',
+let wheelPickerData = [
+  '09.00',
+  '10.00',
+  '11.00',
+  '12.00',
+  '13.00',
+  '14.00',
+  '15.00',
+  '16.00',
+  '17.00',
+  '18.00',
 ];
 
 export default When = () => {
@@ -22,6 +23,17 @@ export default When = () => {
   const onTimeSelected = (selectedItem) => {
     setSelectedTime(selectedItem);
   };
+  useFocusEffect(() => {
+    let timeNow = new Date().toLocaleTimeString().slice(0, 2);
+    let hourNow = JSON.parse(timeNow);
+    let hourAfter = hourNow + 2;
+    console.warn(hourAfter);
+
+    let data = wheelPickerData.filter(
+      (itm, i) => `${hourAfter}` < itm.slice(0, 2),
+    );
+    wheelPickerData = [...data];
+  }, []);
   return (
     <View style={styles.container}>
       <Calendar
@@ -51,6 +63,7 @@ export default When = () => {
         }}
         iconContainer={{flex: 0.1}}
         selectedDate={new Date()}
+        minDate={new Date()}
         highlightDateNumberStyle={{color: R.colors.theme}}
         highlightDateNameStyle={{color: R.colors.theme}}
       />

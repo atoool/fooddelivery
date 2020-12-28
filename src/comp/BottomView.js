@@ -3,6 +3,8 @@ import {View, Text, StyleSheet, Dimensions} from 'react-native';
 import RBSheet from 'react-native-modalbox';
 import R from '../res/R';
 import TopNavig from '../navig/TopNavig';
+import {Button} from 'react-native-elements';
+import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 
 const {width, height} = Dimensions.get('window');
 const tabArray = [
@@ -21,7 +23,24 @@ export default BottomView = (props) => {
       style={styles.container}
       isOpen={props.open}
       onClosed={props.onClosed}
-      backdrop={false}>
+      swipeArea={110}
+      backButtonClose={true}
+      backdropContent={
+        <Button
+          onPress={props.onClosed}
+          buttonStyle={styles.closeBut}
+          useForeground
+          icon={{name: 'close', color: '#000', size: 20}}
+        />
+      }
+      backdrop={true}>
+      <View style={styles.swipeArea}>
+        <FontAwesome5Icon
+          name="chevron-down"
+          color={R.colors.tabIcon}
+          size={15}
+        />
+      </View>
       <TopNavig />
     </RBSheet>
   );
@@ -36,4 +55,17 @@ const styles = StyleSheet.create({
     width,
     overflow: 'hidden',
   },
+  closeBut: {
+    height: 30,
+    width: 30,
+    marginLeft: 15,
+    marginTop: 40,
+    backgroundColor: R.colors.border,
+    borderRadius: 30,
+    padding: 0,
+    justifyContent: 'center',
+    alignItems: 'center',
+    overflow: 'hidden',
+  },
+  swipeArea: {padding: 10, width: '100%', alignItems: 'center'},
 });
